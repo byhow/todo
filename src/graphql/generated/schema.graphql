@@ -1,0 +1,34 @@
+"""Represents NULL values"""
+scalar Void
+
+"""
+A field whose value is a generic Universally Unique Identifier: https://en.wikipedia.org/wiki/Universally_unique_identifier.
+"""
+scalar UUID
+
+type Query {
+  stories: [Story!]!
+}
+
+type Story {
+  id: UUID!
+  priority: Int!
+  text: String!
+}
+
+type Mutation {
+  createStory(input: CreateStoryInput!): Story!
+  updateStory(input: UpdateStoryInput!): Story!
+  deleteStory(id: UUID!): Void
+}
+
+input CreateStoryInput {
+  priority: Int!
+  text: String!
+}
+
+input UpdateStoryInput {
+  id: UUID!
+  priority: Int
+  text: String
+}
